@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
-
+from django.contrib.auth.models import Group
 class UserManager(BaseUserManager, models.Manager):
 
     def _create_user(self, email, password,
@@ -39,7 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin, models.Model):
     email = models.CharField(unique=True, max_length=50)
     genero = models.CharField(choices=(('M','Mujer'),('H','Hombre')), max_length=16,blank=True)
 
-
+    grupo  = models.ForeignKey(Group,on_delete=models.CASCADE,related_name="grupo",blank=True,null=True)
     # intermediario entre trans de cada modelo, object managaer de cada modelo
     objects = UserManager()
 
