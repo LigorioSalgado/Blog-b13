@@ -1,4 +1,4 @@
-from django.conf.urls import url,include
+from django.conf.urls import url, include
 from .views import Index,Add
 urlpatterns = [
     url(r'^$', Index, name='index-publicacion'),
